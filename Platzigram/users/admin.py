@@ -7,6 +7,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 # Models
 from django.contrib.auth.models import User
 from users.models import Profile
+from posts.models import Post
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
@@ -52,6 +53,18 @@ class UserAdmin(BaseUserAdmin):
     """Add profile admin to base user admin."""
 
     inlines = (ProfileInline,)
+
+# @admin.register(Post)
+# class PostAdmin(admin.ModelAdmin):
+#    """Posts Admin model."""
+#
+#    list_display = ('pk', 'user', 'photo')
+#    list_display_links = ('pk', 'user')
+#    list_editable = ('photo',)
+#    list_filter = (
+#                'created',
+#                'modified'
+#    )
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
